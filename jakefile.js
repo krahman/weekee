@@ -1,13 +1,9 @@
 /**
  * Created by nevda on 14/12/14.
  */
-desc("Example!");
-task("example", ["dependency"], function() {
-    console.log("example task");
+task("default", ["lint"]);
+
+task("lint", [], function() {
+    var lint = require("./build/lint/lint_runner.js");
+    lint.validateFile("jakefile.js", {}, {});
 });
-task("hello", function() {
-    console.log("hello world!!");
-});
-task("dependency", function() {
-    console.log("run dependency");
-})

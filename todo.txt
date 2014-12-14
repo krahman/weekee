@@ -16,6 +16,7 @@ User stories:
 Engineering Tasks:
 * automated build
 - continues integration
+- static code analysist (lint)
 - server-side testing
 - client-side testing
 
