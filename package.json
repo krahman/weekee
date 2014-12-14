@@ -1,15 +1,15 @@
 {
-    "name": "weekee",
-    "version": "0.0.1",
-    "description": "wiki",
-    "dependencies": {
-        "jake": "*",
-        "jshint": "*"
-    },
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/krahman/weekee.git"
-    },
-    "author": "khal",
-    "license": ""
+  "name": "weekee",
+  "version": "0.0.1",
+  "description": "wiki",
+  "dependencies": {
+    "jake": "^8.0.10",
+    "jshint": "^2.5.10"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/krahman/weekee.git"
+  },
+  "author": "khal",
+  "license": ""
 }
