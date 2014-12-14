@@ -1,4 +1,7 @@
 /* Copyright (c) 2012 James Shore - See README.txt for license */
+
+/*global exports, require*/
+
 "use strict";
 
 var jshint = require("jshint").JSHINT;
