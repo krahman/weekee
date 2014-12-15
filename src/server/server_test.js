@@ -7,6 +7,6 @@
 var server = require('./server.js');
 
 exports.testNothing = function(test) {
-    test.ok(3, server.getNumber(), 'number');
+    test.equals(3, server.getNumber(), 'number');
     test.done();
 };
