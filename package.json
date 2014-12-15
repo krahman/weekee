@@ -5,7 +5,8 @@
   "dependencies": {
     "bower": "^1.3.12",
     "jake": "^8.0.10",
-    "jshint": "^2.5.10"
+    "jshint": "^2.5.10",
+    "nodeunit": "^0.9.0"
   },
   "repository": {
     "type": "git",

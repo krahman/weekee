@@ -1,15 +1,20 @@
 /**
  * Created by nevda on 14/12/14.
  */
-/*global desc, task, jake*/
+/*global desc, task, jake, fail*/
 
 (function() {
     "use strict";
 
-    task("default", ["lint"]);
+    desc("Build and test");
+    task("default", ["lint", "test"]);
 
-    desc("lint everything");
+    desc("Test everything");
+    task("test", [], function() {
+        console.log("test goes here");
+    });
 
+    desc("Lint everything");
     task("lint", [], function() {
 
         var lint = require("./build/lint/lint_runner.js");
@@ -19,8 +24,8 @@
         files.exclude(["node_modules"]);
 
         var options = nodeLintOptions();
-
-        lint.validateFileList(files.toArray(), options, {});
+        var passed = lint.validateFileList(files.toArray(), options, {});
+        if (!passed) fail("Lint failed");
     });
 
     function nodeLintOptions() {
