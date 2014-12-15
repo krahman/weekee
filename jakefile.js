@@ -1,7 +1,7 @@
 /**
  * Created by nevda on 14/12/14.
  */
-/*global desc, task, jake, fail*/
+/*global desc, task, jake, fail, nodeunit*/
 
 (function() {
     "use strict";
@@ -11,7 +11,8 @@
 
     desc("Test everything");
     task("test", [], function() {
-        console.log("test goes here");
+        var reporter = require("nodeunit").reporters.default;
+        reporter.run(['test', 'src/server/server_test.js']);
     });
 
     desc("Lint everything");
