@@ -4,7 +4,9 @@
 
 'use strict';
 
+var server = require('./server.js');
+
 exports.testNothing = function(test) {
-    test.ok(true, 'hello');
+    test.ok(3, server.getNumber(), 'number');
     test.done();
 };
