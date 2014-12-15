@@ -1,7 +1,7 @@
 /**
  * Created by nevda on 14/12/14.
  */
-/*global desc, task, jake, fail, nodeunit*/
+/*global desc, task, jake, fail, nodeunit, complete*/
 
 (function() {
     "use strict";
@@ -12,8 +12,12 @@
     desc("Test everything");
     task("test", [], function() {
         var reporter = require("nodeunit").reporters.default;
-        reporter.run(['test', 'src/server/server_test.js']);
-    });
+        reporter.run(['src/server/server_test.js'], null, function(failure) {
+            if (failure) fail('test failed');
+            console.log('tests done');
+            complete();
+        });
+    }, {async: false});
 
     desc("Lint everything");
     task("lint", [], function() {
