@@ -23,8 +23,8 @@ exports.testServerResponseToGet = function(test) {
 
 };
 
-exports.tearDown = function(done) {
-    serverFile.stop(function() {
-        done();
-    });
-};
+//exports.tearDown = function(done) {
+//    serverFile.stop(function() {
+//        done();
+//    });
+//};
