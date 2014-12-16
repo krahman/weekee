@@ -3,10 +3,16 @@
  */
 'use strict';
 
-exports.getNumber = function() {
-    return 3;
+var http = require('http');
+var server = http.createServer();
+
+exports.start = function() {
+    server.on('request', function(req, res) {
+        res.end();
+    });
+    server.listen(8181);
 };
 
-exports.sayHello = function() {
-    return false;
+exports.stop = function(callback) {
+    server.close(callback);
 };
