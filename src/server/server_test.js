@@ -11,7 +11,8 @@ exports.testServerResponseToGet = function(test) {
     serverFile.start();
     var options = {
         hostname: 'localhost',
-        port: 8181
+        port: 8181,
+        agent: false
     };
     http.get(options, function(response) {
         test.equals(response.statusCode, 200, 'Server Status Test');
