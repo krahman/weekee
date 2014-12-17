@@ -5,27 +5,39 @@
 'use strict';
 
 var http = require('http');
-var serverFile = require('./server.js');
-
-exports.testServerResponseToGet = function(test) {
-    serverFile.start();
-    var options = {
-        hostname: 'localhost',
-        port: 8181,
-        agent: false
-    };
-    http.get(options, function(response) {
-        test.equals(response.statusCode, 200, 'Server Status Test');
-        console.log('test successful');
-        test.done();
-    }).on('error', function(e) {
-        console.log('Got error ' + e.message);
-    });
-
+var testServer = require('./server.js');
+var options = {
+    hostname: 'localhost',
+    port: 8181,
+    agent: false
 };
 
 exports.tearDown = function(done) {
-    serverFile.stop(function() {
+    testServer.stop(function() {
         done();
     });
 };
+
+exports.testServerResponseToGet = function(test) {
+    testServer.start();
+    http.get(options, function(response) {
+        test.equals(response.statusCode, 200, 'Server Status Test');
+        test.done();
+    });
+
+};
+
+exports.testServerResponseHelloWorld = function(test) {
+    testServer.start();
+    var request = http.get(options, function(res) {
+        res.setEncoding('utf8');
+        res.on('data', function(chunk) {
+            test.equals(chunk, 'Hello World', 'Hello World Test');
+        });
+        res.on('end', function() {
+            test.done();
+        });
+    });
+    request.end();
+};
+
