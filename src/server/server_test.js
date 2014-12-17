@@ -20,11 +20,11 @@ exports.tearDown = function(done) {
 
 exports.testServerResponseToGet = function(test) {
     testServer.start();
-    http.get(options, function(response) {
-        test.equals(response.statusCode, 200, 'Server Status Test');
+    var request = http.get(options, function(res) {
+        test.equals(res.statusCode, 200, 'Server Status Test');
         test.done();
     });
-
+    request.end();
 };
 
 exports.testServerResponseHelloWorld = function(test) {
