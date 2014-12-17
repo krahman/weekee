@@ -46,3 +46,10 @@ exports.testServerRunsCallbackWhenStopCompletes = function(test) {
         test.done();
     });
 };
+
+exports.testStopServerWhenRunningOnAnExceptions = function(test) {
+    test.throws(function() {
+        testServer.stop();
+    });
+    test.done();
+};
