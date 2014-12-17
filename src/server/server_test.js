@@ -14,7 +14,7 @@ var options = {
 
 
 exports.testServerResponseToGet = function(test) {
-    testServer.start();
+    testServer.start(8181);
     var request = http.get(options, function(res) {
         test.equals(res.statusCode, 200, 'Server Status Test');
         testServer.stop(function() {
@@ -25,7 +25,7 @@ exports.testServerResponseToGet = function(test) {
 };
 
 exports.testServerResponseHelloWorld = function(test) {
-    testServer.start();
+    testServer.start(8181);
     var request = http.get(options, function(res) {
         res.setEncoding('utf8');
         res.on('data', function(chunk) {
@@ -40,8 +40,15 @@ exports.testServerResponseHelloWorld = function(test) {
     request.end();
 };
 
+exports.testServerRequiresPortNumber = function(test) {
+    test.throws(function() {
+        testServer.start();
+    });
+    test.done();
+};
+
 exports.testServerRunsCallbackWhenStopCompletes = function(test) {
-    testServer.start();
+    testServer.start(8181);
     testServer.stop(function() {
         test.done();
     });

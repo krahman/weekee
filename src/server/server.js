@@ -6,11 +6,14 @@
 var http = require('http');
 var server = http.createServer();
 
-exports.start = function() {
+exports.start = function(portNumber) {
+
+    if (!portNumber) throw new Error('Port number is required');
+
     server.on('request', function(req, res) {
         res.end('Hello World');
     });
-    server.listen(8181);
+    server.listen(portNumber);
 };
 
 exports.stop = function(callback) {
