@@ -12,17 +12,14 @@ var options = {
     agent: false
 };
 
-exports.tearDown = function(done) {
-    testServer.stop(function() {
-        done();
-    });
-};
 
 exports.testServerResponseToGet = function(test) {
     testServer.start();
     var request = http.get(options, function(res) {
         test.equals(res.statusCode, 200, 'Server Status Test');
-        test.done();
+        testServer.stop(function() {
+            test.done();
+        });
     });
     request.end();
 };
@@ -35,9 +32,17 @@ exports.testServerResponseHelloWorld = function(test) {
             test.equals(chunk, 'Hello World', 'Hello World Test');
         });
         res.on('end', function() {
-            test.done();
+            testServer.stop(function() {
+                test.done();
+            });
         });
     });
     request.end();
 };
 
+exports.testServerRunsCallbackWhenStopCompletes = function(test) {
+    testServer.start();
+    testServer.stop(function() {
+        test.done();
+    });
+};
